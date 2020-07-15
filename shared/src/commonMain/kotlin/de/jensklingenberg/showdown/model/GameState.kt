@@ -27,5 +27,5 @@ enum class EnGameState{
     NOTSTARTED,STARTED,MEMBERSUDPATE,SHOWVOTES
 }
 
-class MyGameState(val enGameState: EnGameState,val body:Any)
-class MyMembersUpdate(val members: String)
+open class MyGameState(val enGameState: EnGameState)
+data class MyMembersUpdate(val members: String) : MyGameState(EnGameState.MEMBERSUDPATE)

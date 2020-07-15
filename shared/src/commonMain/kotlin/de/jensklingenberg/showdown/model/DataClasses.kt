@@ -43,7 +43,16 @@ fun getWebsocketType(toString: String): WebSocketResourceType {
     //TODO:Find better way to get type
 
    return WebSocketResourceType.values().firstOrNull {
-        toString.contains("\"type\":\"${it.ordinal}\"")
+        toString.contains("\"resourceType\":\"${it.name}\"")
     }?:WebSocketResourceType.UNKNOWN
+
+}
+
+fun getMyGameState(toString: String): EnGameState {
+    //TODO:Find better way to get type
+
+    return EnGameState.values().firstOrNull {
+        toString.contains("\"enGameState\":\"${it.name}\"")
+    }?:EnGameState.NOTSTARTED
 
 }

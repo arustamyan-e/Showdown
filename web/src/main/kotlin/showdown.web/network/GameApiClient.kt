@@ -40,27 +40,17 @@ class GameApiClient {
 
         when(getWebsocketType(messageEvent.data.toString())){
             WebSocketResourceType.GameState -> {
-                val resource = JSON.parse<WebsocketResource<MyGameState>>(messageEvent.data.toString())
-                val my = resource.data
-                when (my?.enGameState) {
-                    EnGameState.NOTSTARTED -> {
 
-                    }
-                    EnGameState.STARTED -> {
-
-                    }
+                when(getMyGameState(messageEvent.data.toString())){
+                    EnGameState.NOTSTARTED -> {}
+                    EnGameState.STARTED -> {}
                     EnGameState.MEMBERSUDPATE -> {
-
-
+                        val resource = JSON.parse<WebsocketResource<MyMembersUpdate>>(messageEvent.data.toString())
+                        console.log("HIER HALLO"+resource.data!!.members)
                     }
-                    EnGameState.SHOWVOTES -> {
-
-                    }
-                    null -> {
-
-                    }
+                    EnGameState.SHOWVOTES -> {}
                 }
-                console.log("EVENT: " + resource.data)
+                
 
             }
             WebSocketResourceType.Notification -> {
